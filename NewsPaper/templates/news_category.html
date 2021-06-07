@@ -1,0 +1,39 @@
+{% extends 'default.html' %}
+{% load custom_filters %}
+
+{% block title %} CAT_Deta {% endblock title %}
+
+{% block content %}
+
+<div>
+{% for det in all_pc_dt %}
+    <form method="post" action="{% url 'subscribe' category.id %}">
+        {% csrf_token %}
+<!--        <a> {{ det.pcCategory }} </a> <p> <h2> {{ det.pcPost }} </h2> <hr><a> {{ det.pcPost.text }} </a>  </p>-->
+        {% if category.id not in all_category %}
+        <a> {{ det.pcCategory }} </a> <p> <h2> {{ det.pcPost }} </h2> <hr><a> {{ det.pcPost.text }} </a>  </p>
+        <button type="submit"> {{ category }} подписаться </button>
+    </form>
+
+{% endif %}
+{% endfor %}
+
+</div>
+
+<!--===============================================-->
+<!--<div>-->
+<!--    {% for det in all_pc_dt %}-->
+<!--<form method='POST' action="{% url 'subscribe' category.id %}">-->
+<!--    {% csrf_token %}-->
+<!--    <input type='hidden'>-->
+<!--    {% if category.id in all_category %}-->
+<!--        <button type='submit'>Cancel</button>-->
+<!--    {% else %}-->
+<!--        <button type='submit'>Start</button>-->
+<!--    {% endif %}-->
+<!--    {% endfor %}-->
+<!--</form>-->
+<!--</div>-->
+
+
+{% endblock content %}
